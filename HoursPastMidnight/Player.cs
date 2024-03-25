@@ -1,27 +1,17 @@
 ﻿using System.Runtime.CompilerServices;
 
-class Player
+class Player(string name, int id)
 {
-    static int nextId = 0;
-
-    private List<Card> _cards;
-    private List<Card> _domesticDevQueue = [];
-    private List<Card> _globalDevQueue = [];
-    private List<Card> _progressiveQueue = [];
+    private readonly List<Card> _cards = new(Setup.ROUNDS_PER_YEAR);
+    private readonly List<Card> _domesticDevQueue = [];
+    private readonly List<Card> _globalDevQueue = [];
+    private readonly List<Card> _progressiveQueue = [];
 
     public Stats Stats { get; private set; }
     public int Orders { get; private set; }
     public int Round { get; private set; }
-    public string Name { get; }
-    public int Id { get; }
-    
-    public Player(string name)
-    {
-        _cards = new(Setup.ROUNDS_PER_YEAR);
-        Name = name;
-        Id = nextId;
-        nextId++;
-    }
+    public string Name { get; } = name;
+    public int Id { get; } = id;
 
     public void GameInit()
     {
